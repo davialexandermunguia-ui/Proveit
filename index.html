@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VíaPrimma by Centeno</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#f1e9e9;
+    color:#1e0c0c;
+}
+
+header{
+    background:#fff;
+    border-bottom:2px solid #ddd;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    width:65px;
+    height:65px;
+    object-fit:contain;
+}
+
+.marca{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.marca h1{
+    font-size:22px;
+}
+
+.marca p{
+    color:#777;
+    font-size:13px;
+}
+
+nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+nav button{
+    background:#111;
+    color:white;
+    border:0;
+    padding:10px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+nav button:hover{
+    background:#b9220e;
+}
+
+.seccion{
+    display:none;
+}
+
+.seccion.activa{
+    display:block;
+}
+
+.hero{
+    padding:55px 20px;
+    background:linear-gradient(120deg,#fff,#eee,#fff);
+}
+
+.hero-contenido{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr .8fr;
+    gap:30px;
+    align-items:center;
+}
+
+.hero h2{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.hero h2 span{
+    color:#e00012;
+}
+
+.hero p{
+    font-size:17px;
+    line-height:1.6;
+    margin-bottom:10px;
+}
+
+.hero-logo{
+    width:250px;
+    max-width:100%;
+    margin:auto;
+}
+
+.container{
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 18px;
+}
+
+.panel{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:20px;
+    border:1px solid #ddd;
+}
+
+.frases{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.frase{
+    background:#111;
+    color:white;
+    padding:20px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.filtros{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+input,select{
+    width:100%;
+    padding:11px;
+    border:1px solid #ccc;
+    border-radius:7px;
+    background:white;
+}
+
+.catalogo{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+    gap:20px;
+}
+
+.auto{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid #ddd;
+    box-shadow:0 3px 12px #0002;
+}
+
+.auto img{
+    width:100%;
+    height:190px;
+    object-fit:cover;
+}
+
+.auto-info{
+    padding:16px;
+}
+
+.auto h3{
+    margin:8px 0;
+}
+
+.datos{
+    color:#666;
+    line-height:1.7;
+}
+
+.precio{
+    color:#c8170a;
+    font-size:23px;
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.btn{
+    border:0;
+    border-radius:7px;
+    padding:11px 15px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.rojo{
+    background:#e00012;
+    color:white;
+}
+
+.negro{
+    background:#111;
+    color:white;
+}
+
+.gris{
+    background:#eee;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:14px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:5px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
+}
+
+th{
+    background:#111;
+    color:white;
+}
+
+.factura{
+    max-width:850px;
+    margin:auto;
+    background:rgb(240, 242, 240);
+    padding:30px;
+    border-radius:10px;
+}
+
+.factura-cabecera{
+    display:flex;
+    justify-content:space-between;
+    border-bottom:2px solid #111;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.factura-cabecera img{
+    width:75px;
+}
+
+.total{
+    text-align:right;
+    margin-top:20px;
+}
+
+.total-final{
+    font-size:27px;
+    color:#e00012;
+    font-weight:bold;
+}
+
+footer{
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:30px 15px;
+    margin-top:40px;
+}
+
+@media(max-width:800px){
+
+    .header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    nav button{
+        flex:1;
+    }
+
+    .hero-contenido{
+        grid-template-columns:1fr;
+    }
+
+    .hero h2{
+        font-size:32px;
+    }
+
+    .filtros{
+        grid-template-columns:1fr;
+    }
+
+    .frases{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:500px){
+
+    .frases{
+        grid-template-columns:1fr;
+    }
+
+    .factura-cabecera{
+        flex-direction:column;
+    }
+}
+
+@media print{
+
+    header,
+    footer,
+    .no-print{
+        display:none!important;
+    }
+
+    .factura{
+        box-shadow:none;
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header">
+
+<div class="marca">
+
+<img class="logo"
+src="https://i.imgur.com/placeholder.png"
+alt="Logo VíaPrimma">
+
+<div>
+<h1>VíaPrimma by Centeno</h1>
+<p>Vehículos seminuevos</p>
+</div>
+
+</div>
+
+<nav>
+<button onclick="mostrar('inicio')">Inicio</button>
+<button onclick="mostrar('vehiculos')">Vehículos</button>
+<button onclick="mostrar('clientes')">Clientes</button>
+<button onclick="mostrar('venta')">Nueva venta</button>
+<button onclick="mostrar('facturas')">Facturas</button>
+</nav>
+
+</div>
+
+</header>
+
+
+<!-- INICIO -->
+
+<section id="inicio" class="seccion activa">
+
+<div class="hero">
+
+<div class="hero-contenido">
+
+<div>
+
+<h2>
+Bienvenidos a
+<span>VíaPrimma</span>
+by Centeno
+</h2>
+
+<p>
+Somos tu mejor opción en la compra y venta de vehículos seminuevos.
+Te ofrecemos un inventario seleccionado con los más altos estándares
+de calidad, asesoría personalizada y el respaldo total que tú y tu
+familia necesitan.
+</p>
+
+<p>
+<strong>
+¡Visítanos y encuentra el auto de tus sueños!
+</strong>
+</p>
+
+<p>
+<strong>“Tu camino seguro hacia un mejor vehículo.”</strong>
+</p>
+
+<p>
+<strong>
+“Transparencia, confianza y el respaldo de la familia Centeno.”
+</strong>
+</p>
+
+<p>
+<strong>“Calidad garantizada sobre ruedas.”</strong>
+</p>
+
+<p>
+<strong>
+“Donde comprar tu auto es una decisión segura.”
+</strong>
+</p>
+
+<br>
+
+<button class="btn rojo"
+onclick="mostrar('vehiculos')">
+Ver vehículos
+</button>
+
+</div>
+
+<img
+class="hero-logo"
+src="https://i.imgur.com/placeholder.png"
+alt="VíaPrimma">
+
+</div>
+
+</div>
+
+
+<div class="container">
+
+<div class="panel">
+
+<h2>📍 Visítanos</h2>
+
+<br>
+
+<p>
+<strong>Dirección:</strong>
+El Progreso, Yoro, Bulevar Cannan
+</p>
+
+<p>
+<strong>Correo:</strong>
+eddyjosue.2007@gmail.com
+</p>
+
+<p>
+<strong>Moneda:</strong>
+Lempira (L)
+</p>
+
+</div>
+
+
+<div class="frases">
+
+<div class="frase">
+Tu camino seguro hacia un mejor vehículo.
+</div>
+
+<div class="frase">
+Transparencia, confianza y respaldo.
+</div>
+
+<div class="frase">
+Calidad garantizada sobre ruedas.
+</div>
+
+<div class="frase">
+Comprar tu auto es una decisión segura.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VEHICULOS -->
+
+<section id="vehiculos" class="seccion">
+
+<div class="container">
+
+<h2>🚗 Vehículos disponibles</h2>
+
+<br>
+
+<div class="filtros">
+
+<input
+id="buscar"
+placeholder="Buscar marca o modelo..."
+oninput="mostrarVehiculos()">
+
+<select id="filtroMarca"
+onchange="mostrarVehiculos()">
+
+<option value="">
+Todas las marcas
+</option>
+
+</select>
+
+<select id="filtroAnio"
+onchange="mostrarVehiculos()">
+
+<option value="">
+Todos los años
+</option>
+
+</select>
+
+<select id="orden"
+onchange="mostrarVehiculos()">
+
+<option value="">
+Ordenar
+</option>
+
+<option value="menor">
+Precio menor
+</option>
+
+<option value="mayor">
+Precio mayor
+</option>
+
+<option value="nuevo">
+Más nuevo
+</option>
+
+</select>
+
+</div>
+
+
+<div id="catalogo" class="catalogo"></div>
+
+</div>
+
+</section>
+
+
+<!-- CLIENTES -->
+
+<section id="clientes" class="seccion">
+
+<div class="container">
+
+<h2>👤 Registro de clientes</h2>
+
+<br>
+
+<div class="panel">
+
+<div class="form-grid">
+
+<div>
+<label>Nombre completo</label>
+<input id="nombreCliente">
+</div>
+
+<div>
+<label>DNI / Identidad</label>
+<input id="dniCliente">
+</div>
+
+<div>
+<label>Teléfono</label>
+<input id="telefonoCliente">
+</div>
+
+<div>
+<label>Correo</label>
+<input id="correoCliente">
+</div>
+
+<div>
+<label>Dirección</label>
+<input id="direccionCliente">
+</div>
+
+</div>
+
+<br>
+
+<button class="btn rojo"
+onclick="guardarCliente()">
+
+Guardar cliente
+
+</button>
+
+</div>
+
+
+<div class="panel">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Nombre</th>
+<th>DNI</th>
+<th>Teléfono</th>
+<th>Correo</th>
+</tr>
+
+</thead>
+
+<tbody id="tablaClientes"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- VENTA -->
+
+<section id="venta" class="seccion">
+
+<div class="container">
+
+<h2>🧾 Nueva venta</h2>
+
+<br>
+
+<div class="panel">
+
+<div class="form-grid">
+
+<div>
+
+<label>Cliente</label>
+
+<select id="clienteVenta">
+<option value="">
+Seleccione cliente
+</option>
+</select>
+
+</div>
+
+
+<div>
+
+<label>Vehículo</label>
+
+<select id="vehiculoVenta"
+onchange="calcularVenta()">
+
+<option value="">
+Seleccione vehículo
+</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Precio</label>
+
+<input
+id="precioVenta"
+readonly>
+
+</div>
+
+
+<div>
+
+<label>Impuesto (%)</label>
+
+<input
+id="impuesto"
+type="number"
+value="15"
+oninput="calcularVenta()">
+
+</div>
+
+
+<div>
+
+<label>Método de pago</label>
+
+<select id="metodoPago">
+
+<option>Efectivo</option>
+<option>Transferencia</option>
+<option>Tarjeta</option>
+<option>Financiamiento</option>
+
+</select>
+
+</div>
+
+</div>
+
+<br>
+
+<div id="resumenVenta"></div>
+
+<br>
+
+<button
+class="btn rojo"
+onclick="crearFactura()">
+
+Generar factura
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FACTURAS -->
+
+<section id="facturas" class="seccion">
+
+<div class="container">
+
+<h2>📄 Facturas registradas</h2>
+
+<br>
+
+<div id="listaFacturas"></div>
+
+</div>
+
+</section>
+
+
+<!-- FACTURA -->
+
+<section id="vistaFactura" class="seccion">
+
+<div class="container">
+
+<div id="factura" class="factura"></div>
+
+<br>
+
+<button
+class="btn negro no-print"
+onclick="window.print()">
+
+🖨️ Imprimir factura
+
+</button>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h3>VíaPrimma by Centeno</h3>
+
+<br>
+
+<p>
+📍 El Progreso, Yoro · Bulevar Cannan
+</p>
+
+<p>
+📧 eddyjosue.2007@gmail.com
+</p>
+
+<br>
+
+<p>
+“Transparencia, confianza y el respaldo de la familia Centeno.”
+</p>
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   BASE DE DATOS LOCAL
+===================================== */
+
+let vehiculos =
+JSON.parse(localStorage.getItem("vpVehiculos")) || [
+
+{
+id:1,
+marca:"Toyota",
+modelo:"Corolla",
+anio:2022,
+kilometraje:"48,000 km",
+transmision:"Automático",
+combustible:"Gasolina",
+precio:395000,
+imagen:"https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=900&q=80"
+},
+
+{
+id:2,
+marca:"Toyota",
+modelo:"Hilux",
+anio:2021,
+kilometraje:"62,000 km",
+transmision:"Automático",
+combustible:"Diésel",
+precio:685000,
+imagen:"https://images.unsplash.com/photo-1625047509248-ec889cbff17f?auto=format&fit=crop&w=900&q=80"
+},
+
+{
+id:3,
+marca:"Honda",
+modelo:"Civic",
+anio:2023,
+kilometraje:"31,000 km",
+transmision:"Automático",
+combustible:"Gasolina",
+precio:525000,
+imagen:"https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+},
+
+{
+id:4,
+marca:"Hyundai",
+modelo:"Tucson",
+anio:2022,
+kilometraje:"45,000 km",
+transmision:"Automático",
+combustible:"Gasolina",
+precio:565000,
+imagen:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+},
+
+{
+id:5,
+marca:"Ford",
+modelo:"Ranger",
+anio:2021,
+kilometraje:"70,000 km",
+transmision:"Automático",
+combustible:"Diésel",
+precio:620000,
+imagen:"https://images.unsplash.com/photo-1559416523-140ddc3d238c?auto=format&fit=crop&w=900&q=80"
+},
+
+{
+id:6,
+marca:"Kia",
+modelo:"Sportage",
+anio:2023,
+kilometraje:"28,000 km",
+transmision:"Automático",
+combustible:"Gasolina",
+precio:595000,
+imagen:"https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=900&q=80"
+}
+
+];
+
+
+let clientes =
+JSON.parse(localStorage.getItem("vpClientes")) || [];
+
+let facturas =
+JSON.parse(localStorage.getItem("vpFacturas")) || [];
+
+
+/* =====================================
+   FUNCIONES
+===================================== */
+
+function guardarDatos(){
+
+localStorage.setItem(
+"vpVehiculos",
+JSON.stringify(vehiculos)
+);
+
+localStorage.setItem(
+"vpClientes",
+JSON.stringify(clientes)
+);
+
+localStorage.setItem(
+"vpFacturas",
+JSON.stringify(facturas)
+);
+
+}
+
+
+function dinero(numero){
+
+return "L " +
+Number(numero).toLocaleString(
+"es-HN",
+{
+minimumFractionDigits:2
+}
+);
+
+}
+
+
+function mostrar(id){
+
+document
+.querySelectorAll(".seccion")
+.forEach(x =>
+x.classList.remove("activa")
+);
+
+document
+.getElementById(id)
+.classList.add("activa");
+
+
+if(id=="vehiculos")
+mostrarVehiculos();
+
+if(id=="clientes")
+mostrarClientes();
+
+if(id=="venta")
+cargarVenta();
+
+if(id=="facturas")
+mostrarFacturas();
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =====================================
+   VEHICULOS
+===================================== */
+
+function cargarFiltros(){
+
+let marcas =
+[...new Set(
+vehiculos.map(v=>v.marca)
+)].sort();
+
+let anios =
+[...new Set(
+vehiculos.map(v=>v.anio)
+)].sort((a,b)=>b-a);
+
+
+let marca =
+document.getElementById("filtroMarca");
+
+let anio =
+document.getElementById("filtroAnio");
+
+
+marca.innerHTML =
+'<option value="">Todas las marcas</option>';
+
+marcas.forEach(m=>{
+
+marca.innerHTML +=
+`<option>${m}</option>`;
+
+});
+
+
+anio.innerHTML =
+'<option value="">Todos los años</option>';
+
+anios.forEach(a=>{
+
+anio.innerHTML +=
+`<option>${a}</option>`;
+
+});
+
+}
+
+
+function mostrarVehiculos(){
+
+cargarFiltros();
+
+
+let texto =
+document.getElementById("buscar").value.toLowerCase();
+
+let marca =
+document.getElementById("filtroMarca").value;
+
+let anio =
+document.getElementById("filtroAnio").value;
+
+let orden =
+document.getElementById("orden").value;
+
+
+let lista =
+vehiculos.filter(v=>{
+
+return (
+
+(
+v.marca+" "+v.modelo
+)
+.toLowerCase()
+.includes(texto)
+
+&&
+(!marca || v.marca==marca)
+
+&&
+(!anio || v.anio==anio)
+
+);
+
+});
+
+
+if(orden=="menor")
+lista.sort((a,b)=>a.precio-b.precio);
+
+if(orden=="mayor")
+lista.sort((a,b)=>b.precio-a.precio);
+
+if(orden=="nuevo")
+lista.sort((a,b)=>b.anio-a.anio);
+
+
+let catalogo =
+document.getElementById("catalogo");
+
+
+catalogo.innerHTML="";
+
+
+lista.forEach(v=>{
+
+catalogo.innerHTML += `
+
+<div class="auto">
+
+<img
+src="${v.imagen}"
+onerror="
+this.src='https://via.placeholder.com/900x600?text=Vehiculo'
+">
+
+<div class="auto-info">
+
+<h3>
+${v.marca} ${v.modelo}
+</h3>
+
+<div class="datos">
+
+📅 Año: ${v.anio}<br>
+
+🛣️ Kilometraje:
+${v.kilometraje}<br>
+
+⚙️ Transmisión:
+${v.transmision}<br>
+
+⛽ Combustible:
+${v.combustible}
+
+</div>
+
+<div class="precio">
+${dinero(v.precio)}
+</div>
+
+<button
+class="btn rojo"
+onclick="comprar(${v.id})">
+
+Comprar
+
+</button>
+
+<button
+class="btn gris"
+onclick="detalles(${v.id})">
+
+Detalles
+
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function detalles(id){
+
+let v =
+vehiculos.find(x=>x.id==id);
+
+alert(
+
+v.marca+" "+v.modelo+
+
+"\n\nAño: "+v.anio+
+
+"\nKilometraje: "+v.kilometraje+
+
+"\nTransmisión: "+v.transmision+
+
+"\nCombustible: "+v.combustible+
+
+"\nPrecio: "+dinero(v.precio)
+
+);
+
+}
+
+
+function comprar(id){
+
+mostrar("venta");
+
+cargarVenta();
+
+setTimeout(()=>{
+
+document.getElementById(
+"vehiculoVenta"
+).value=id;
+
+calcularVenta();
+
+},100);
+
+}
+
+
+/* =====================================
+   CLIENTES
+===================================== */
+
+function guardarCliente(){
+
+let cliente={
+
+id:Date.now(),
+
+nombre:
+document.getElementById(
+"nombreCliente"
+).value,
+
+dni:
+document.getElementById(
+"dniCliente"
+).value,
+
+telefono:
+document.getElementById(
+"telefonoCliente"
+).value,
+
+correo:
+document.getElementById(
+"correoCliente"
+).value,
+
+direccion:
+document.getElementById(
+"direccionCliente"
+).value
+
+};
+
+
+if(!cliente.nombre || !cliente.dni){
+
+alert(
+"El nombre y DNI son obligatorios."
+);
+
+return;
+
+}
+
+
+clientes.push(cliente);
+
+guardarDatos();
+
+document
+.getElementById("nombreCliente")
+.value="";
+
+document
+.getElementById("dniCliente")
+.value="";
+
+document
+.getElementById("telefonoCliente")
+.value="";
+
+document
+.getElementById("correoCliente")
+.value="";
+
+document
+.getElementById("direccionCliente")
+.value="";
+
+
+mostrarClientes();
+
+alert(
+"Cliente guardado correctamente."
+);
+
+}
+
+
+function mostrarClientes(){
+
+let tabla =
+document.getElementById(
+"tablaClientes"
+);
+
+tabla.innerHTML="";
+
+
+clientes.forEach(c=>{
+
+tabla.innerHTML += `
+
+<tr>
+
+<td>${c.nombre}</td>
+
+<td>${c.dni}</td>
+
+<td>${c.telefono}</td>
+
+<td>${c.correo}</td>
+
+</tr>
+
+`;
+
+});
+
+}
+
+
+/* =====================================
+   VENTA
+===================================== */
+
+function cargarVenta(){
+
+let cliente =
+document.getElementById(
+"clienteVenta"
+);
+
+cliente.innerHTML =
+'<option value="">Seleccione cliente</option>';
+
+
+clientes.forEach(c=>{
+
+cliente.innerHTML += `
+
+<option value="${c.id}">
+${c.nombre} - ${c.dni}
+</option>
+
+`;
+
+});
+
+
+let vehiculo =
+document.getElementById(
+"vehiculoVenta"
+);
+
+vehiculo.innerHTML =
+'<option value="">Seleccione vehículo</option>';
+
+
+vehiculos.forEach(v=>{
+
+vehiculo.innerHTML += `
+
+<option value="${v.id}">
+${v.marca} ${v.modelo}
+-
+${dinero(v.precio)}
+</option>
+
+`;
+
+});
+
+}
+
+
+function calcularVenta(){
+
+let id =
+Number(
+document.getElementById(
+"vehiculoVenta"
+).value
+);
+
+
+let v =
+vehiculos.find(x=>x.id==id);
+
+
+if(!v){
+
+document.getElementById(
+"precioVenta"
+).value="";
+
+document.getElementById(
+"resumenVenta"
+).innerHTML="";
+
+return;
+
+}
+
+
+document.getElementById(
+"precioVenta"
+).value=v.precio;
+
+
+let impuesto =
+Number(
+document.getElementById(
+"impuesto"
+).value
+)||0;
+
+
+let valorImpuesto =
+v.precio*impuesto/100;
+
+let total =
+v.precio+valorImpuesto;
+
+
+document.getElementById(
+"resumenVenta"
+).innerHTML=`
+
+<div class="panel">
+
+<p>
+<strong>Subtotal:</strong>
+${dinero(v.precio)}
+</p>
+
+<p>
+<strong>Impuesto:</strong>
+${dinero(valorImpuesto)}
+</p>
+
+<h2 style="color:#e00012">
+TOTAL:
+${dinero(total)}
+</h2>
+
+</div>
+
+`;
+
+}
+
+
+/* =====================================
+   FACTURA
+===================================== */
+
+function crearFactura(){
+
+let cliente =
+clientes.find(
+c=>c.id ==
+Number(
+document.getElementById(
+"clienteVenta"
+).value
+)
+);
+
+
+let vehiculo =
+vehiculos.find(
+v=>v.id ==
+Number(
+document.getElementById(
+"vehiculoVenta"
+).value
+)
+);
+
+
+if(!cliente || !vehiculo){
+
+alert(
+"Selecciona un cliente y un vehículo."
+);
+
+return;
+
+}
+
+
+let impuesto =
+Number(
+document.getElementById(
+"impuesto"
+).value
+)||0;
+
+
+let valorImpuesto =
+vehiculo.precio*impuesto/100;
+
+let total =
+vehiculo.precio+valorImpuesto;
+
+
+let factura={
+
+numero:
+"VP-"+Date.now(),
+
+fecha:
+new Date().toLocaleString(
+"es-HN"
+),
+
+cliente:cliente,
+
+vehiculo:vehiculo,
+
+impuesto:valorImpuesto,
+
+porcentaje:impuesto,
+
+total:total,
+
+pago:
+document.getElementById(
+"metodoPago"
+).value
+
+};
+
+
+facturas.push(factura);
+
+guardarDatos();
+
+mostrarFactura(factura);
+
+mostrar("vistaFactura");
+
+}
+
+
+function mostrarFactura(f){
+
+document.getElementById(
+"factura"
+).innerHTML=`
+
+<div class="factura-cabecera">
+
+<div>
+
+<img
+src="https://i.imgur.com/placeholder.png">
+
+<h2>
+VíaPrimma by Centeno
+</h2>
+
+<p>
+El Progreso, Yoro
+</p>
+
+<p>
+Bulevar Cannan
+</p>
+
+<p>
+eddyjosue.2007@gmail.com
+</p>
+
+</div>
+
+<div>
+
+<h2>FACTURA</h2>
+
+<p>
+<strong>${f.numero}</strong>
+</p>
+
+<p>${f.fecha}</p>
+
+</div>
+
+</div>
+
+
+<h3>Datos del cliente</h3>
+
+<br>
+
+<p>
+<strong>Nombre:</strong>
+${f.cliente.nombre}
+</p>
+
+<p>
+<strong>DNI:</strong>
+${f.cliente.dni}
+</p>
+
+<p>
+<strong>Teléfono:</strong>
+${f.cliente.telefono}
+</p>
+
+<p>
+<strong>Correo:</strong>
+${f.cliente.correo}
+</p>
+
+<br>
+
+
+<h3>Vehículo vendido</h3>
+
+<br>
+
+<table>
+
+<tr>
+
+<th>Vehículo</th>
+<th>Año</th>
+<th>Precio</th>
+
+</tr>
+
+<tr>
+
+<td>
+${f.vehiculo.marca}
+${f.vehiculo.modelo}
+</td>
+
+<td>
+${f.vehiculo.anio}
+</td>
+
+<td>
+${dinero(f.vehiculo.precio)}
+</td>
+
+</tr>
+
+</table>
+
+
+<div class="total">
+
+<p>
+Subtotal:
+${dinero(f.vehiculo.precio)}
+</p>
+
+<p>
+Impuesto (${f.porcentaje}%):
+${dinero(f.impuesto)}
+</p>
+
+<p class="total-final">
+TOTAL:
+${dinero(f.total)}
+</p>
+
+<p>
+Método de pago:
+<strong>${f.pago}</strong>
+</p>
+
+</div>
+
+<br>
+
+<hr>
+
+<br>
+
+<p>
+<strong>
+“Transparencia, confianza y el respaldo
+de la familia Centeno.”
+</strong>
+</p>
+
+`;
+
+}
+
+
+/* =====================================
+   LISTA DE FACTURAS
+===================================== */
+
+function mostrarFacturas(){
+
+let lista =
+document.getElementById(
+"listaFacturas"
+);
+
+lista.innerHTML="";
+
+
+if(facturas.length==0){
+
+lista.innerHTML=`
+<div class="panel">
+No hay facturas registradas.
+</div>
+`;
+
+return;
+
+}
+
+
+facturas
+.slice()
+.reverse()
+.forEach(f=>{
+
+lista.innerHTML += `
+
+<div class="panel">
+
+<h3>
+${f.numero}
+</h3>
+
+<p>
+${f.fecha}
+</p>
+
+<p>
+Cliente:
+${f.cliente.nombre}
+</p>
+
+<p>
+Vehículo:
+${f.vehiculo.marca}
+${f.vehiculo.modelo}
+</p>
+
+<h3 style="color:#e00012">
+${dinero(f.total)}
+</h3>
+
+<br>
+
+<button
+class="btn negro"
+onclick='verFactura(${JSON.stringify(f)})'>
+
+Ver factura
+
+</button>
+
+</div>
+
+`;
+
+});
+
+}
+
+
+function verFactura(f){
+
+mostrarFactura(f);
+
+mostrar("vistaFactura");
+
+}
+
+
+/* =====================================
+   INICIO
+===================================== */
+
+mostrarVehiculos();
+
+</script>
+
+</body>
+</html>
